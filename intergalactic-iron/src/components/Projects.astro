@@ -199,38 +199,29 @@ const sortedProjects = [...featuredProjects, ...otherProjects];
   }
   
   .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
 </style>
 
 <script>
-  // Filtrado de proyectos
+  // Filtrar proyectos por tag
   const filterButtons = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
   
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Remover clase activa de todos los botones
+      // Actualizar botones activos
       filterButtons.forEach(btn => btn.classList.remove('active'));
-      // Agregar clase activa al botón actual
       button.classList.add('active');
       
+      // Obtener el filtro
       const filter = button.getAttribute('data-filter');
       
+      // Filtrar proyectos
       projectCards.forEach(card => {
-        // Mostrar todos los proyectos si el filtro es "all"
-        if (filter === 'all') {
-          card.style.display = 'block';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-          return;
-        }
+        const tags = card.getAttribute('data-tags')?.split(',') || [];
         
-        // Filtrar por etiqueta
-        const tags = card.getAttribute('data-tags');
-        if (tags && tags.includes(filter)) {
+        if (filter === 'all' || tags.includes(filter)) {
           card.style.display = 'block';
           setTimeout(() => {
             card.style.opacity = '1';
