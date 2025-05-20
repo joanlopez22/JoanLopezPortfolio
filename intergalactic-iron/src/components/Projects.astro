@@ -1,0 +1,249 @@
+import { Icon } from 'astro-icon/components';
+
+// Definición de proyectos
+const projects = [
+  {
+    title: "E-commerce Dashboard",
+    description: "Plataforma completa para gestión de tiendas online con analíticas en tiempo real y gestión de inventario.",
+    image: "/projects/placeholder.svg",
+    tags: ["React", "Node.js", "MongoDB", "Redux", "Chart.js"],
+    demoLink: "https://demo-ecommerce.joanlopez.dev",
+    codeLink: "https://github.com/joanlopez/ecommerce-dashboard",
+    featured: true
+  },
+  {
+    title: "TaskFlow",
+    description: "Aplicación de gestión de tareas con funcionalidades de colaboración en equipo y seguimiento de proyectos.",
+    image: "/projects/placeholder.svg",
+    tags: ["React", "Firebase", "Tailwind CSS", "Context API"],
+    demoLink: "https://taskflow.joanlopez.dev",
+    codeLink: "https://github.com/joanlopez/taskflow",
+    featured: true
+  },
+  {
+    title: "Weather App",
+    description: "Aplicación de pronóstico del tiempo con interfaz interactiva y animaciones basadas en condiciones meteorológicas.",
+    image: "/projects/placeholder.svg",
+    tags: ["JavaScript", "API REST", "CSS3", "HTML5"],
+    demoLink: "https://weather.joanlopez.dev",
+    codeLink: "https://github.com/joanlopez/weather-app",
+    featured: false
+  },
+  {
+    title: "Blog Personal",
+    description: "Blog con sistema de gestión de contenidos personalizado y optimización SEO.",
+    image: "/projects/placeholder.svg",
+    tags: ["Next.js", "Contenful", "Vercel", "Styled Components"],
+    demoLink: "https://blog.joanlopez.dev",
+    codeLink: "https://github.com/joanlopez/personal-blog",
+    featured: false
+  },
+  {
+    title: "Fitness Tracker",
+    description: "Aplicación para seguimiento de rutinas de ejercicio y progreso físico con estadísticas personalizadas.",
+    image: "/projects/placeholder.svg",
+    tags: ["Vue.js", "Express", "PostgreSQL", "Chart.js"],
+    demoLink: "https://fitness.joanlopez.dev",
+    codeLink: "https://github.com/joanlopez/fitness-tracker",
+    featured: true
+  },
+  {
+    title: "Recetas App",
+    description: "Plataforma de recetas con búsqueda por ingredientes y sistema de calificación por usuarios.",
+    image: "/projects/placeholder.svg",
+    tags: ["React Native", "Firebase", "Expo", "Redux"],
+    demoLink: "https://recetas.joanlopez.dev",
+    codeLink: "https://github.com/joanlopez/recetas-app",
+    featured: false
+  }
+];
+
+// Filtrar proyectos destacados para mostrarlos primero
+const featuredProjects = projects.filter(project => project.featured);
+const otherProjects = projects.filter(project => !project.featured);
+const sortedProjects = [...featuredProjects, ...otherProjects];
+
+<section id="proyectos" class="py-20 md:py-32 relative overflow-hidden">
+  <!-- Decoración de fondo -->
+  <div class="absolute -top-20 left-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  
+  <div class="container mx-auto px-4 md:px-8 relative z-10">
+    <div class="text-center mb-16" data-aos="fade-down">
+      <h2 class="text-sm text-primary uppercase tracking-widest font-mono mb-2">Mi trabajo</h2>
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Proyectos <span class="gradient-text">Destacados</span></h3>
+      <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+    </div>
+    
+    <!-- Filtros de proyectos -->
+    <div class="flex justify-center flex-wrap gap-3 mb-12" data-aos="fade-up">
+      <button class="filter-btn active px-4 py-2 rounded-full text-sm" data-filter="all">Todos</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-sm" data-filter="React">React</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-sm" data-filter="Node.js">Node.js</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-sm" data-filter="Firebase">Firebase</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-sm" data-filter="Vue.js">Vue.js</button>
+    </div>
+    
+    <!-- Grid de proyectos -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 projects-container">
+      {sortedProjects.map((project, index) => (
+        <div 
+          class="project-card group"
+          data-aos="fade-up"
+          data-aos-delay={(index * 100).toString()}
+          data-tags={project.tags.join(',')}
+        >
+          <div class="relative overflow-hidden rounded-xl aspect-video bg-dark/80 shadow-xl">
+            <!-- Imagen del proyecto con overlay al hacer hover -->
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+            />
+            
+            <!-- Overlay con degradado -->
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+            
+            <!-- Etiqueta de destacado -->
+            {project.featured && (
+              <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                Destacado
+              </div>
+            )}
+            
+            <!-- Información del proyecto -->
+            <div class="absolute bottom-0 left-0 w-full p-6">
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                {project.title}
+              </h4>
+              
+              <p class="text-gray-300 text-sm mb-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                {project.description}
+              </p>
+              
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.tags.map((tag) => (
+                  <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <!-- Enlaces -->
+              <div class="flex space-x-3 opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 transition-all duration-300">
+                {project.demoLink && (
+                  <a 
+                    href={project.demoLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center"
+                  >
+                    <Icon name="ri:external-link-line" class="w-4 h-4 mr-1" />
+                    Demo
+                  </a>
+                )}
+                
+                {project.codeLink && (
+                  <a 
+                    href={project.codeLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="bg-dark/80 hover:bg-dark text-white border border-primary/50 px-4 py-2 rounded-full text-sm font-medium inline-flex items-center"
+                  >
+                    <Icon name="ri:code-s-slash-line" class="w-4 h-4 mr-1" />
+                    Código
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Botón para ver más proyectos -->
+    <div class="text-center mt-12">
+      <a 
+        href="https://github.com/joanlopez" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center px-6 py-3 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+      >
+        <Icon name="ri:github-fill" class="w-5 h-5 mr-2" />
+        Ver más proyectos en GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .filter-btn {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 113, 255, 0.2);
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn:hover:not(.active) {
+    border-color: rgba(0, 113, 255, 0.5);
+  }
+  
+  .filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+  }
+  
+  .project-card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-10px);
+  }
+</style>
+
+<script>
+  // Filtrado de proyectos
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remover clase activa de todos los botones
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Agregar clase activa al botón actual
+      button.classList.add('active');
+      
+      const filter = button.getAttribute('data-filter');
+      
+      projectCards.forEach(card => {
+        // Mostrar todos los proyectos si el filtro es "all"
+        if (filter === 'all') {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 10);
+          return;
+        }
+        
+        // Filtrar por etiqueta
+        const tags = card.getAttribute('data-tags');
+        if (tags && tags.includes(filter)) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+</script> 

@@ -1,0 +1,193 @@
+import { Icon } from 'astro-icon/components';
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  {
+    title: "Enlaces rápidos",
+    links: [
+      { name: "Inicio", url: "#inicio" },
+      { name: "Sobre mí", url: "#sobre-mi" },
+      { name: "Habilidades", url: "#habilidades" },
+      { name: "Proyectos", url: "#proyectos" },
+      { name: "Contacto", url: "#contacto" },
+    ]
+  },
+  {
+    title: "Servicios",
+    links: [
+      { name: "Desarrollo Web", url: "#servicios" },
+      { name: "Aplicaciones móviles", url: "#servicios" },
+      { name: "E-commerce", url: "#servicios" },
+      { name: "UI/UX Design", url: "#servicios" },
+      { name: "Consultoría", url: "#servicios" },
+    ]
+  },
+  {
+    title: "Legal",
+    links: [
+      { name: "Términos de servicio", url: "/legal/terms" },
+      { name: "Política de privacidad", url: "/legal/privacy" },
+      { name: "Cookies", url: "/legal/cookies" },
+    ]
+  }
+];
+
+const socialLinks = [
+  { name: "GitHub", icon: "simple-icons:github", url: "https://github.com/joanlopez" },
+  { name: "LinkedIn", icon: "simple-icons:linkedin", url: "https://linkedin.com/in/joanlopezramirez" },
+  { name: "Twitter", icon: "simple-icons:twitter", url: "https://twitter.com/joanlopezdev" },
+  { name: "Instagram", icon: "simple-icons:instagram", url: "https://instagram.com/joanlopezdev" },
+];
+
+<footer class="bg-dark relative overflow-hidden pt-20 pb-10">
+  <!-- Decoración de fondo -->
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-primary/20"></div>
+  <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+  
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Sección superior del footer -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-6 gap-8 pb-12 border-b border-primary/10">
+      <!-- Logo e información -->
+      <div class="lg:col-span-2">
+        <a href="#" class="inline-block text-2xl font-bold mb-6 flex items-center">
+          <span class="text-primary mr-1">&lt;</span>
+          <span>Joan</span>
+          <span class="text-primary ml-1">/&gt;</span>
+        </a>
+        
+        <p class="text-gray-400 mb-6 max-w-md">
+          Desarrollador de software especializado en crear experiencias digitales excepcionales con las tecnologías más modernas.
+        </p>
+        
+        <!-- Suscripción a newsletter -->
+        <div class="mb-6">
+          <h5 class="text-light font-medium mb-3">Suscríbete a mi newsletter</h5>
+          <form class="flex">
+            <input 
+              type="email" 
+              placeholder="Tu email" 
+              class="bg-dark/80 border border-primary/30 text-light rounded-l-lg px-4 py-2 focus:outline-none focus:border-primary flex-grow"
+            />
+            <button 
+              type="submit" 
+              class="bg-primary hover:bg-primary/90 text-white rounded-r-lg px-4 transition-colors duration-300 flex items-center"
+            >
+              <Icon name="ri:send-plane-line" class="w-5 h-5" />
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Links de navegación -->
+      {footerLinks.map((column) => (
+        <div>
+          <h5 class="text-light font-medium mb-5">{column.title}</h5>
+          <ul class="space-y-3">
+            {column.links.map((link) => (
+              <li>
+                <a 
+                  href={link.url} 
+                  class="text-gray-400 hover:text-primary transition-colors duration-300 flex items-center group"
+                >
+                  <span class="w-0 h-0.5 bg-primary mr-0 group-hover:w-2 group-hover:mr-2 transition-all duration-300"></span>
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      
+      <!-- Contacto rápido -->
+      <div>
+        <h5 class="text-light font-medium mb-5">Contacto rápido</h5>
+        <ul class="space-y-3">
+          <li class="flex items-start space-x-3">
+            <Icon name="ri:mail-line" class="w-5 h-5 text-primary mt-0.5" />
+            <a href="mailto:hello@joanlopez.dev" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              hello@joanlopez.dev
+            </a>
+          </li>
+          <li class="flex items-start space-x-3">
+            <Icon name="ri:phone-line" class="w-5 h-5 text-primary mt-0.5" />
+            <a href="tel:+34612345678" class="text-gray-400 hover:text-primary transition-colors duration-300">
+              +34 612 345 678
+            </a>
+          </li>
+          <li class="flex items-start space-x-3">
+            <Icon name="ri:map-pin-line" class="w-5 h-5 text-primary mt-0.5" />
+            <span class="text-gray-400">
+              Barcelona, España
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Sección inferior del footer -->
+    <div class="flex flex-col md:flex-row justify-between items-center pt-8">
+      <p class="text-gray-500 text-sm mb-4 md:mb-0">
+        &copy; {currentYear} Joan Lopez Ramirez. Todos los derechos reservados.
+      </p>
+      
+      <!-- Redes sociales -->
+      <div class="flex space-x-4">
+        {socialLinks.map((social) => (
+          <a 
+            href={social.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-gray-400 hover:text-primary transition-colors duration-300"
+            aria-label={social.name}
+          >
+            <Icon name={social.icon} class="w-5 h-5" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Botón de volver arriba -->
+  <button 
+    id="back-to-top" 
+    class="fixed bottom-6 right-6 bg-primary/90 hover:bg-primary text-white p-3 rounded-full shadow-lg transform translate-y-20 opacity-0 invisible transition-all duration-300 z-50"
+    aria-label="Volver arriba"
+  >
+    <Icon name="ri:arrow-up-line" class="w-5 h-5" />
+  </button>
+</footer>
+
+<script>
+  // Manejo del botón "Back to top"
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  if (backToTopButton) {
+    // Mostrar el botón cuando se desplaza hacia abajo
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopButton.classList.remove('translate-y-20', 'opacity-0', 'invisible');
+        backToTopButton.classList.add('translate-y-0', 'opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.add('translate-y-20', 'opacity-0');
+        backToTopButton.classList.remove('translate-y-0', 'opacity-100', 'visible');
+        
+        // Una pequeña espera antes de ocultar completamente para la animación
+        setTimeout(() => {
+          if (window.scrollY <= 500) {
+            backToTopButton.classList.add('invisible');
+          }
+        }, 300);
+      }
+    });
+    
+    // Evento de clic para volver arriba
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+</script> 

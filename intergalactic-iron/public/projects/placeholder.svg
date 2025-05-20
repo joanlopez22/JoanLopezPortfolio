@@ -1,0 +1,24 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="450" fill="#000000"/>
+  <rect x="10" y="10" width="780" height="430" rx="15" stroke="#0071FF" stroke-width="2" stroke-dasharray="10 5"/>
+  
+  <!-- Fondo de código -->
+  <rect x="100" y="100" width="600" height="250" rx="10" fill="#0F0F0F"/>
+  
+  <!-- Representación de código -->
+  <text x="130" y="140" fill="#0071FF" font-family="monospace" font-size="14">import React from 'react';</text>
+  <text x="130" y="170" fill="#E91E63" font-family="monospace" font-size="14">function Project() {</text>
+  <text x="150" y="200" fill="#FFFFFF" font-family="monospace" font-size="14">  return (</text>
+  <text x="170" y="230" fill="#76FF03" font-family="monospace" font-size="14">    &lt;div&gt;</text>
+  <text x="190" y="260" fill="#FFEB3B" font-family="monospace" font-size="14">      &lt;h1&gt;Proyecto&lt;/h1&gt;</text>
+  <text x="190" y="290" fill="#FFEB3B" font-family="monospace" font-size="14">      &lt;p&gt;Descripción&lt;/p&gt;</text>
+  <text x="170" y="320" fill="#76FF03" font-family="monospace" font-size="14">    &lt;/div&gt;</text>
+  <text x="150" y="350" fill="#FFFFFF" font-family="monospace" font-size="14">  );</text>
+  <text x="130" y="380" fill="#E91E63" font-family="monospace" font-size="14">}</text>
+  
+  <!-- Título del proyecto -->
+  <text x="400" y="50" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Proyecto</text>
+  
+  <!-- Tecnologías utilizadas -->
+  <text x="400" y="420" text-anchor="middle" fill="#0071FF" font-family="Arial, sans-serif" font-size="16">React • Node.js • MongoDB</text>
+</svg> 

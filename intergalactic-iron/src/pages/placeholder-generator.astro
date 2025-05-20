@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+
+// Lista de proyectos desde el componente Projects
+const projects = [
+  {
+    title: "E-commerce Dashboard",
+    image: "/projects/ecommerce.webp",
+  },
+  {
+    title: "TaskFlow",
+    image: "/projects/taskflow.webp",
+  },
+  {
+    title: "Weather App",
+    image: "/projects/weather.webp",
+  },
+  {
+    title: "Blog Personal",
+    image: "/projects/blog.webp",
+  },
+  {
+    title: "Fitness Tracker",
+    image: "/projects/fitness.webp",
+  },
+  {
+    title: "Recetas App",
+    image: "/projects/recetas.webp",
+  }
+];
+
+// Imágenes adicionales
+const additionalImages = [
+  {
+    title: "Profile Image",
+    image: "/profile.webp",
+  },
+  {
+    title: "About Me",
+    image: "/about-me.webp",
+  }
+];
+
+const allImages = [...projects, ...additionalImages];
+---
+
+<Layout title="Image Placeholder Generator">
+  <div class="container mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-6">Imágenes Placeholder para el Portfolio</h1>
+    <p class="mb-8">Esta página genera automáticamente todas las imágenes placeholder necesarias para el portfolio.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {allImages.map((item) => (
+        <div class="bg-dark/50 rounded-lg overflow-hidden">
+          <ImagePlaceholder
+            width={600}
+            height={400}
+            text={item.title}
+            className="w-full h-auto"
+          />
+          <div class="p-4">
+            <p class="text-lg font-medium">{item.title}</p>
+            <p class="text-gray-400 text-sm">{item.image}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Script para guardar las imágenes
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('Nota: Esta página solo muestra placeholders visuales. Para una versión real, necesitaría generar y guardar las imágenes físicamente.');
+  });
+</script> 
