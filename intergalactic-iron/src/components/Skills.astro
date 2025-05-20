@@ -1,0 +1,230 @@
+import { Icon } from 'astro-icon/components';
+
+// Definir las habilidades para frontend, backend y herramientas
+const frontendSkills = [
+  { name: 'HTML', icon: 'devicon:html5', level: 95 },
+  { name: 'CSS', icon: 'devicon:css3', level: 90 },
+  { name: 'JavaScript', icon: 'devicon:javascript', level: 95 },
+  { name: 'TypeScript', icon: 'devicon:typescript', level: 90 },
+  { name: 'React', icon: 'devicon:react', level: 95 },
+  { name: 'Vue', icon: 'devicon:vuejs', level: 85 },
+  { name: 'Angular', icon: 'devicon:angularjs', level: 80 },
+  { name: 'Tailwind CSS', icon: 'devicon:tailwindcss', level: 90 },
+];
+
+const backendSkills = [
+  { name: 'Node.js', icon: 'devicon:nodejs', level: 90 },
+  { name: 'Express', icon: 'devicon:express', level: 90 },
+  { name: 'Python', icon: 'devicon:python', level: 85 },
+  { name: 'Django', icon: 'devicon:django', level: 80 },
+  { name: 'PHP', icon: 'devicon:php', level: 75 },
+  { name: 'Java', icon: 'devicon:java', level: 70 },
+  { name: 'MySQL', icon: 'devicon:mysql', level: 85 },
+  { name: 'MongoDB', icon: 'devicon:mongodb', level: 90 },
+];
+
+const toolsSkills = [
+  { name: 'Git', icon: 'devicon:git', level: 90 },
+  { name: 'Docker', icon: 'devicon:docker', level: 85 },
+  { name: 'AWS', icon: 'devicon:amazonwebservices', level: 80 },
+  { name: 'Firebase', icon: 'devicon:firebase', level: 85 },
+  { name: 'Figma', icon: 'devicon:figma', level: 75 },
+  { name: 'Jest', icon: 'devicon:jest', level: 80 },
+  { name: 'VS Code', icon: 'devicon:vscode', level: 95 },
+  { name: 'Webpack', icon: 'devicon:webpack', level: 80 },
+];
+
+<section id="habilidades" class="py-20 md:py-32 bg-dark/50 relative overflow-hidden">
+  <!-- Decoración de fondo -->
+  <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 z-0"></div>
+  <div class="absolute -bottom-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  
+  <div class="container mx-auto px-4 md:px-8 relative z-10">
+    <div class="text-center mb-16" data-aos="fade-down">
+      <h2 class="text-sm text-primary uppercase tracking-widest font-mono mb-2">Lo que hago mejor</h2>
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Mis <span class="gradient-text">Habilidades</span></h3>
+      <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+    </div>
+    
+    <!-- Categorías de habilidades con tabs -->
+    <div class="mb-12">
+      <div class="flex justify-center flex-wrap gap-4 mb-10">
+        <button 
+          id="tab-frontend" 
+          class="skill-tab active px-6 py-3 rounded-full font-medium text-light transition-all duration-300"
+          data-target="skill-content-frontend"
+        >
+          Frontend
+        </button>
+        <button 
+          id="tab-backend" 
+          class="skill-tab px-6 py-3 rounded-full font-medium text-light transition-all duration-300"
+          data-target="skill-content-backend"
+        >
+          Backend
+        </button>
+        <button 
+          id="tab-tools" 
+          class="skill-tab px-6 py-3 rounded-full font-medium text-light transition-all duration-300"
+          data-target="skill-content-tools"
+        >
+          Herramientas
+        </button>
+      </div>
+      
+      <!-- Contenido de tabs -->
+      <div id="skill-content-frontend" class="skill-content active">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {frontendSkills.map((skill) => (
+            <div 
+              class="skill-card bg-dark/50 border border-primary/20 p-6 rounded-xl hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={(frontendSkills.indexOf(skill) * 100).toString()}
+            >
+              <div class="mb-4 flex justify-center">
+                <Icon name={skill.icon} class="w-16 h-16 text-primary" />
+              </div>
+              <h4 class="text-light text-lg font-medium text-center mb-3">{skill.name}</h4>
+              <div class="w-full bg-dark/70 h-2 rounded-full overflow-hidden">
+                <div class="skill-progress-bar bg-primary h-full rounded-full" data-level={skill.level}></div>
+              </div>
+              <p class="text-right text-sm text-primary mt-1">{skill.level}%</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div id="skill-content-backend" class="skill-content hidden">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {backendSkills.map((skill) => (
+            <div 
+              class="skill-card bg-dark/50 border border-primary/20 p-6 rounded-xl hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={(backendSkills.indexOf(skill) * 100).toString()}
+            >
+              <div class="mb-4 flex justify-center">
+                <Icon name={skill.icon} class="w-16 h-16 text-primary" />
+              </div>
+              <h4 class="text-light text-lg font-medium text-center mb-3">{skill.name}</h4>
+              <div class="w-full bg-dark/70 h-2 rounded-full overflow-hidden">
+                <div class="skill-progress-bar bg-primary h-full rounded-full" data-level={skill.level}></div>
+              </div>
+              <p class="text-right text-sm text-primary mt-1">{skill.level}%</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div id="skill-content-tools" class="skill-content hidden">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {toolsSkills.map((skill) => (
+            <div 
+              class="skill-card bg-dark/50 border border-primary/20 p-6 rounded-xl hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={(toolsSkills.indexOf(skill) * 100).toString()}
+            >
+              <div class="mb-4 flex justify-center">
+                <Icon name={skill.icon} class="w-16 h-16 text-primary" />
+              </div>
+              <h4 class="text-light text-lg font-medium text-center mb-3">{skill.name}</h4>
+              <div class="w-full bg-dark/70 h-2 rounded-full overflow-hidden">
+                <div class="skill-progress-bar bg-primary h-full rounded-full" data-level={skill.level}></div>
+              </div>
+              <p class="text-right text-sm text-primary mt-1">{skill.level}%</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skill-tab {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 113, 255, 0.2);
+  }
+  
+  .skill-tab.active {
+    background: var(--primary-color);
+    color: white;
+  }
+  
+  .skill-tab:hover:not(.active) {
+    border-color: rgba(0, 113, 255, 0.5);
+  }
+  
+  .skill-progress-bar {
+    width: 0;
+    transition: width 1.5s ease-in-out;
+  }
+  
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+</style>
+
+<script>
+  // Manejar los tabs
+  const tabs = document.querySelectorAll('.skill-tab');
+  const contents = document.querySelectorAll('.skill-content');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-target');
+      
+      // Desactivar todos los tabs y contenidos
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.add('hidden'));
+      
+      // Activar el tab y contenido seleccionado
+      tab.classList.add('active');
+      document.getElementById(target)?.classList.remove('hidden');
+      document.getElementById(target)?.classList.add('active');
+      
+      // Reiniciar la animación de las barras de progreso
+      animateSkillBars();
+    });
+  });
+  
+  // Animar las barras de progreso cuando están en el viewport
+  function animateSkillBars() {
+    const progressBars = document.querySelectorAll('.skill-progress-bar');
+    
+    // Reiniciar todas las barras a cero primero
+    progressBars.forEach(bar => {
+      bar.style.width = '0%';
+    });
+    
+    // Pequeño retraso para permitir que la transición se reinicie
+    setTimeout(() => {
+      progressBars.forEach(bar => {
+        const level = bar.getAttribute('data-level');
+        bar.style.width = `${level}%`;
+      });
+    }, 100);
+  }
+  
+  // Inicializar animaciones cuando el documento esté cargado
+  document.addEventListener('DOMContentLoaded', () => {
+    animateSkillBars();
+  });
+  
+  // Reiniciar animaciones cuando la sección entre en el viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateSkillBars();
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  const skillsSection = document.getElementById('habilidades');
+  if (skillsSection) {
+    observer.observe(skillsSection);
+  }
+</script> 

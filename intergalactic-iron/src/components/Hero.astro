@@ -1,0 +1,229 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="inicio" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+  <!-- Fondo con efecto de partículas -->
+  <div class="particles-container absolute inset-0 z-0"></div>
+  
+  <!-- Gradiente de superposición -->
+  <div class="absolute inset-0 bg-gradient-to-b from-dark via-dark/90 to-dark z-10"></div>
+  
+  <div class="container mx-auto px-4 md:px-8 z-20 relative py-20 lg:py-0">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div data-aos="fade-right" data-aos-delay="200">
+        <div class="text-sm uppercase tracking-widest text-primary mb-4 font-mono">¡Hola! Soy</div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <span class="block">Joan Lopez</span>
+          <span class="block gradient-text">Desarrollador de Software</span>
+        </h1>
+        
+        <div class="h-8 mb-6">
+          <span id="typed-text" class="text-xl md:text-2xl text-gray-300"></span>
+        </div>
+        
+        <p class="text-gray-300 mb-8 max-w-xl leading-relaxed">
+          Especializado en crear experiencias digitales excepcionales con las tecnologías más modernas.
+          Con un enfoque en soluciones elegantes y eficientes para problemas complejos.
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+          <a href="#contacto" class="btn-primary px-8 py-3 rounded-full flex items-center">
+            <Icon name="ri:message-3-line" class="w-5 h-5 mr-2" />
+            Contactar
+          </a>
+          <a href="#proyectos" class="btn-secondary px-8 py-3 rounded-full flex items-center">
+            <Icon name="ri:code-s-slash-line" class="w-5 h-5 mr-2" />
+            Ver proyectos
+          </a>
+        </div>
+      </div>
+      
+      <div class="relative hidden lg:block" data-aos="fade-up">
+        <!-- Imagen de perfil con efectos -->
+        <div class="hero-image-container">
+          <div class="hero-image-glow absolute inset-0 rounded-full bg-primary/20 blur-3xl"></div>
+          <img 
+            src="/profile.webp" 
+            alt="Joan Lopez Ramirez" 
+            class="hero-image relative w-full max-w-md mx-auto rounded-full border-4 border-primary/50"
+          />
+          <!-- Elementos decorativos flotantes -->
+          <div class="floating-icon floating-icon-1">
+            <Icon name="devicon:react" class="w-14 h-14" />
+          </div>
+          <div class="floating-icon floating-icon-2">
+            <Icon name="devicon:typescript" class="w-12 h-12" />
+          </div>
+          <div class="floating-icon floating-icon-3">
+            <Icon name="devicon:nodejs" class="w-16 h-16" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Flecha animada para scroll -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block z-30 animate-bounce-slow">
+      <a href="#sobre-mi" aria-label="Desplazarse hacia abajo">
+        <Icon name="ri:arrow-down-line" class="w-8 h-8 text-primary" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .particles-container {
+    background-color: var(--dark-color);
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 113, 255, 0.5);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 113, 255, 0.7);
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+  }
+  
+  .hero-image-container {
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .hero-image {
+    animation: pulse-slow 4s infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating-icon {
+    position: absolute;
+    background-color: var(--dark-color);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 113, 255, 0.3);
+  }
+  
+  .floating-icon-1 {
+    top: 10%;
+    right: 5%;
+    animation: float 5s ease-in-out infinite;
+  }
+  
+  .floating-icon-2 {
+    bottom: 15%;
+    right: 15%;
+    animation: float 7s ease-in-out infinite;
+  }
+  
+  .floating-icon-3 {
+    top: 30%;
+    left: 5%;
+    animation: float 6s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  import Typed from 'typed.js';
+  import * as THREE from 'three';
+  
+  // Typed.js para efecto de escritura
+  document.addEventListener('DOMContentLoaded', () => {
+    const typedElement = document.getElementById('typed-text');
+    
+    if (typedElement) {
+      const typed = new Typed(typedElement, {
+        strings: [
+          'Frontend Developer',
+          'Backend Developer',
+          'Full Stack Developer',
+          'React Specialist',
+          'Node.js Expert'
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 1500,
+        loop: true,
+        smartBackspace: true
+      });
+    }
+    
+    // Crear efecto de partículas en el fondo
+    createParticles();
+  });
+  
+  function createParticles() {
+    const particlesContainer = document.querySelector('.particles-container');
+    
+    if (!particlesContainer) return;
+    
+    // Creación de partículas con JavaScript nativo para no depender de librerías extra
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      const size = Math.random() * 5 + 1;
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100;
+      const duration = Math.random() * 20 + 10;
+      const delay = Math.random() * 5;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}%`;
+      particle.style.top = `${posY}%`;
+      particle.style.opacity = Math.random() * 0.5 + 0.1;
+      particle.style.animation = `moveParticle ${duration}s infinite linear ${delay}s`;
+      
+      particlesContainer.appendChild(particle);
+    }
+  }
+</script>
+
+<style is:global>
+  .particle {
+    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  @keyframes moveParticle {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(100px, 50px);
+    }
+    50% {
+      transform: translate(50px, 100px);
+    }
+    75% {
+      transform: translate(-50px, 50px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+</style> 

@@ -1,0 +1,134 @@
+import { Icon } from 'astro-icon/components';
+
+<section id="sobre-mi" class="py-20 md:py-32 relative overflow-hidden">
+  <!-- Decoración de fondo -->
+  <div class="absolute -top-20 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  
+  <div class="container mx-auto px-4 md:px-8 relative z-10">
+    <div class="text-center mb-16" data-aos="fade-down">
+      <h2 class="text-sm text-primary uppercase tracking-widest font-mono mb-2">Conoce más</h2>
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Sobre <span class="gradient-text">Mí</span></h3>
+      <div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div 
+        class="group relative rounded-2xl overflow-hidden shadow-xl"
+        data-aos="fade-right"
+        data-aos-delay="100"
+      >
+        <div class="absolute inset-0 bg-primary/20 rounded-2xl -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+        
+        <img 
+          src="/about-me.webp" 
+          alt="Joan Lopez trabajando" 
+          class="w-full h-auto rounded-2xl transform group-hover:scale-105 transition-transform duration-500"
+        />
+        
+        <div class="absolute bottom-4 left-4 right-4 bg-dark/80 backdrop-blur-sm p-4 rounded-xl border border-primary/30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+          <p class="text-light font-medium">
+            +5 años de experiencia en desarrollo de software
+          </p>
+        </div>
+      </div>
+      
+      <div data-aos="fade-left" data-aos-delay="200">
+        <h4 class="text-2xl font-bold mb-4">Desarrollador Full Stack Apasionado</h4>
+        
+        <p class="text-gray-300 mb-6 leading-relaxed">
+          Soy un desarrollador de software con pasión por crear aplicaciones web modernas y escalables. Mi viaje en el mundo de la programación comenzó hace más de 5 años, y desde entonces he trabajado en diversos proyectos que me han permitido expandir mis habilidades técnicas y mi comprensión del desarrollo de software.
+        </p>
+        
+        <p class="text-gray-300 mb-8 leading-relaxed">
+          Me especializo en tecnologías como React, Node.js, y bases de datos SQL y NoSQL. Me enfoco en crear soluciones elegantes para problemas complejos, siempre priorizando la experiencia del usuario y la calidad del código.
+        </p>
+        
+        <!-- Stats animados -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+          <div class="text-center p-4 bg-dark/50 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors duration-300">
+            <div class="counter-value text-3xl font-bold text-primary mb-2" data-target="5">0</div>
+            <p class="text-sm text-gray-300">Años de experiencia</p>
+          </div>
+          <div class="text-center p-4 bg-dark/50 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors duration-300">
+            <div class="counter-value text-3xl font-bold text-primary mb-2" data-target="50">0</div>
+            <p class="text-sm text-gray-300">Proyectos completados</p>
+          </div>
+          <div class="text-center p-4 bg-dark/50 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors duration-300">
+            <div class="counter-value text-3xl font-bold text-primary mb-2" data-target="20">0</div>
+            <p class="text-sm text-gray-300">Clientes satisfechos</p>
+          </div>
+          <div class="text-center p-4 bg-dark/50 rounded-xl border border-primary/20 hover:border-primary/50 transition-colors duration-300">
+            <div class="counter-value text-3xl font-bold text-primary mb-2" data-target="15">0</div>
+            <p class="text-sm text-gray-300">Tecnologías dominadas</p>
+          </div>
+        </div>
+        
+        <!-- Botones de acción -->
+        <div class="flex flex-wrap gap-6">
+          <a 
+            href="/CV-JoanLopez.pdf" 
+            download
+            class="group flex items-center space-x-2 text-light hover:text-primary transition-colors duration-300"
+          >
+            <span class="bg-primary/20 rounded-full p-3 group-hover:bg-primary/30 transition-colors duration-300">
+              <Icon name="ri:download-2-line" class="w-5 h-5 text-primary" />
+            </span>
+            <span>Descargar CV</span>
+          </a>
+          <a 
+            href="#contacto" 
+            class="group flex items-center space-x-2 text-light hover:text-primary transition-colors duration-300"
+          >
+            <span class="bg-primary/20 rounded-full p-3 group-hover:bg-primary/30 transition-colors duration-300">
+              <Icon name="ri:send-plane-line" class="w-5 h-5 text-primary" />
+            </span>
+            <span>Contactar</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animación de contadores
+  function animateCounters() {
+    const counterElements = document.querySelectorAll('.counter-value');
+    
+    const options = {
+      threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.getAttribute('data-target') || '0');
+          let count = 0;
+          const duration = 2000; // ms
+          const increment = target / (duration / 16);
+          
+          const timer = setInterval(() => {
+            count += increment;
+            entry.target.textContent = Math.min(Math.floor(count), target).toString();
+            
+            if (count >= target) {
+              clearInterval(timer);
+              entry.target.textContent = target.toString();
+            }
+          }, 16);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    
+    counterElements.forEach(counter => {
+      observer.observe(counter);
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    animateCounters();
+  });
+</script> 
