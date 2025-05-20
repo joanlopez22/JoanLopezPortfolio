@@ -1,0 +1,85 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Joan Lopez Ramirez | Desarrollador de Software", 
+	description = "Portfolio profesional de Joan Lopez Ramirez, Desarrollador de Software especializado en aplicaciones web modernas." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	</head>
+	<body class="bg-dark text-light font-sans antialiased selection:bg-primary selection:text-light">
+		<slot />
+		
+		<script>
+			import AOS from 'aos';
+			AOS.init({
+				duration: 1000,
+				once: false,
+				mirror: true,
+			});
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--primary-color: #0071FF;
+		--secondary-color: #00A3FF;
+		--dark-color: #000000;
+		--light-color: #FFFFFF;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		margin: 0;
+		width: 100%;
+		min-height: 100vh;
+		overflow-x: hidden;
+		background-color: var(--dark-color);
+		color: var(--light-color);
+	}
+	
+	::selection {
+		background-color: var(--primary-color);
+		color: var(--light-color);
+	}
+	
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+	
+	::-webkit-scrollbar-thumb {
+		background: var(--primary-color);
+		border-radius: 10px;
+	}
+	
+	::-webkit-scrollbar-track {
+		background: var(--dark-color);
+	}
+	
+	.gradient-text {
+		background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+</style>
