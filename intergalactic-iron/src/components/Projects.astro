@@ -1,3 +1,4 @@
+---
 import { Icon } from 'astro-icon/components';
 
 // Definición de proyectos
@@ -59,9 +60,12 @@ const projects = [
 ];
 
 // Filtrar proyectos destacados para mostrarlos primero
-const featuredProjects = projects.filter(project => project.featured);
-const otherProjects = projects.filter(project => !project.featured);
-const sortedProjects = [...featuredProjects, ...otherProjects];
+const sortedProjects = projects.sort((a, b) => {
+  if (a.featured && !b.featured) return -1;
+  if (!a.featured && b.featured) return 1;
+  return 0;
+});
+---
 
 <section id="proyectos" class="py-20 md:py-32 relative overflow-hidden">
   <!-- Decoración de fondo -->
@@ -216,25 +220,26 @@ const sortedProjects = [...featuredProjects, ...otherProjects];
       
       // Obtener el filtro
       const filter = button.getAttribute('data-filter');
-      
-      // Filtrar proyectos
+        // Filtrar proyectos
       projectCards.forEach(card => {
-        const tags = card.getAttribute('data-tags')?.split(',') || [];
+        const tagsAttr = card.getAttribute('data-tags');
+        const tags = tagsAttr ? tagsAttr.split(',') : [];
+        const htmlCard = card as HTMLElement;
         
-        if (filter === 'all' || tags.includes(filter)) {
-          card.style.display = 'block';
+        if (filter === 'all' || (filter && tags.includes(filter))) {
+          htmlCard.style.display = 'block';
           setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
+            htmlCard.style.opacity = '1';
+            htmlCard.style.transform = 'translateY(0)';
           }, 10);
         } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
+          htmlCard.style.opacity = '0';
+          htmlCard.style.transform = 'translateY(20px)';
           setTimeout(() => {
-            card.style.display = 'none';
+            htmlCard.style.display = 'none';
           }, 300);
         }
       });
     });
   });
-</script> 
+</script>

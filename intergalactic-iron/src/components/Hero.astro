@@ -47,16 +47,15 @@ import { Icon } from 'astro-icon/components';
             src="/profile-placeholder.svg" 
             alt="Joan Lopez Ramirez" 
             class="hero-image relative w-full max-w-md mx-auto rounded-full border-4 border-primary/50"
-          />
-          <!-- Elementos decorativos flotantes -->
+          />          <!-- Elementos decorativos flotantes -->
           <div class="floating-icon floating-icon-1">
-            <Icon name="devicon:react" class="w-14 h-14" />
+            <Icon name="simple-icons:react" class="w-14 h-14" />
           </div>
           <div class="floating-icon floating-icon-2">
-            <Icon name="devicon:typescript" class="w-12 h-12" />
+            <Icon name="simple-icons:typescript" class="w-12 h-12" />
           </div>
           <div class="floating-icon floating-icon-3">
-            <Icon name="devicon:nodejs" class="w-16 h-16" />
+            <Icon name="simple-icons:nodedotjs" class="w-16 h-16" />
           </div>
         </div>
       </div>
@@ -188,11 +187,10 @@ import { Icon } from 'astro-icon/components';
       const duration = Math.random() * 20 + 10;
       const delay = Math.random() * 5;
       
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
+      particle.style.width = `${size}px`;      particle.style.height = `${size}px`;
       particle.style.left = `${posX}%`;
       particle.style.top = `${posY}%`;
-      particle.style.opacity = Math.random() * 0.5 + 0.1;
+      particle.style.opacity = (Math.random() * 0.5 + 0.1).toString();
       particle.style.animation = `moveParticle ${duration}s infinite linear ${delay}s`;
       
       particlesContainer.appendChild(particle);

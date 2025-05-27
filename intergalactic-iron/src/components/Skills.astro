@@ -3,36 +3,36 @@ import { Icon } from 'astro-icon/components';
 
 // Definir las habilidades para frontend, backend y herramientas
 const frontendSkills = [
-  { name: 'HTML', icon: 'devicon:html5', level: 95 },
-  { name: 'CSS', icon: 'devicon:css3', level: 90 },
-  { name: 'JavaScript', icon: 'devicon:javascript', level: 95 },
-  { name: 'TypeScript', icon: 'devicon:typescript', level: 90 },
-  { name: 'React', icon: 'devicon:react', level: 95 },
-  { name: 'Vue', icon: 'devicon:vuejs', level: 85 },
-  { name: 'Angular', icon: 'devicon:angularjs', level: 80 },
-  { name: 'Tailwind CSS', icon: 'devicon:tailwindcss', level: 90 },
+  { name: 'HTML', icon: 'simple-icons:html5', level: 95 },
+  { name: 'CSS', icon: 'simple-icons:css3', level: 90 },
+  { name: 'JavaScript', icon: 'simple-icons:javascript', level: 95 },
+  { name: 'TypeScript', icon: 'simple-icons:typescript', level: 90 },
+  { name: 'React', icon: 'simple-icons:react', level: 95 },
+  { name: 'Vue', icon: 'simple-icons:vuedotjs', level: 85 },
+  { name: 'Angular', icon: 'simple-icons:angular', level: 80 },
+  { name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss', level: 90 },
 ];
 
 const backendSkills = [
-  { name: 'Node.js', icon: 'devicon:nodejs', level: 90 },
-  { name: 'Express', icon: 'devicon:express', level: 90 },
-  { name: 'Python', icon: 'devicon:python', level: 85 },
-  { name: 'Django', icon: 'devicon:django', level: 80 },
-  { name: 'PHP', icon: 'devicon:php', level: 75 },
-  { name: 'Java', icon: 'devicon:java', level: 70 },
-  { name: 'MySQL', icon: 'devicon:mysql', level: 85 },
-  { name: 'MongoDB', icon: 'devicon:mongodb', level: 90 },
+  { name: 'Node.js', icon: 'simple-icons:nodedotjs', level: 90 },
+  { name: 'Express', icon: 'simple-icons:express', level: 90 },
+  { name: 'Python', icon: 'simple-icons:python', level: 85 },
+  { name: 'Django', icon: 'simple-icons:django', level: 80 },
+  { name: 'PHP', icon: 'simple-icons:php', level: 75 },
+  { name: 'Java', icon: 'simple-icons:openjdk', level: 70 },
+  { name: 'MySQL', icon: 'simple-icons:mysql', level: 85 },
+  { name: 'MongoDB', icon: 'simple-icons:mongodb', level: 90 },
 ];
 
 const toolsSkills = [
-  { name: 'Git', icon: 'devicon:git', level: 90 },
-  { name: 'Docker', icon: 'devicon:docker', level: 85 },
-  { name: 'AWS', icon: 'devicon:amazonwebservices', level: 80 },
-  { name: 'Firebase', icon: 'devicon:firebase', level: 85 },
-  { name: 'Figma', icon: 'devicon:figma', level: 75 },
-  { name: 'Jest', icon: 'devicon:jest', level: 80 },
-  { name: 'VS Code', icon: 'devicon:vscode', level: 95 },
-  { name: 'Webpack', icon: 'devicon:webpack', level: 80 },
+  { name: 'Git', icon: 'simple-icons:git', level: 90 },
+  { name: 'Docker', icon: 'simple-icons:docker', level: 85 },
+  { name: 'AWS', icon: 'simple-icons:amazonwebservices', level: 80 },
+  { name: 'Firebase', icon: 'simple-icons:firebase', level: 85 },
+  { name: 'Figma', icon: 'simple-icons:figma', level: 75 },
+  { name: 'Jest', icon: 'simple-icons:jest', level: 80 },
+  { name: 'VS Code', icon: 'simple-icons:visualstudiocode', level: 95 },
+  { name: 'Webpack', icon: 'simple-icons:webpack', level: 80 },
 ];
 ---
 
@@ -174,8 +174,7 @@ const toolsSkills = [
   // Manejar los tabs
   const tabs = document.querySelectorAll('.skill-tab');
   const contents = document.querySelectorAll('.skill-content');
-  
-  tabs.forEach(tab => {
+    tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-target');
       
@@ -185,28 +184,34 @@ const toolsSkills = [
       
       // Activar el tab y contenido seleccionado
       tab.classList.add('active');
-      document.getElementById(target)?.classList.remove('hidden');
-      document.getElementById(target)?.classList.add('active');
+      if (target) {
+        const targetElement = document.getElementById(target);
+        if (targetElement) {
+          targetElement.classList.remove('hidden');
+          targetElement.classList.add('active');
+        }
+      }
       
       // Reiniciar la animación de las barras de progreso
       animateSkillBars();
     });
   });
-  
-  // Animar las barras de progreso cuando están en el viewport
+    // Animar las barras de progreso cuando están en el viewport
   function animateSkillBars() {
     const progressBars = document.querySelectorAll('.skill-progress-bar');
     
     // Reiniciar todas las barras a cero primero
     progressBars.forEach(bar => {
-      bar.style.width = '0%';
+      (bar as HTMLElement).style.width = '0%';
     });
     
     // Pequeño retraso para permitir que la transición se reinicie
     setTimeout(() => {
       progressBars.forEach(bar => {
         const level = bar.getAttribute('data-level');
-        bar.style.width = `${level}%`;
+        if (level) {
+          (bar as HTMLElement).style.width = `${level}%`;
+        }
       });
     }, 100);
   }
