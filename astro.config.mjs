@@ -6,8 +6,8 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://joanlopez22.github.io', // Reemplaza USERNAME con tu usuario de GitHub
-  base: 'JoanLopezPortfolio', // Reemplaza REPOSITORY_NAME con el nombre de tu repositorio
+  site: 'https://joanlopez22.github.io',
+  base: '/JoanLopezPortfolio',
   integrations: [
     react(), 
     tailwind(),
